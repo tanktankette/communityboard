@@ -6,9 +6,16 @@ from datetime import date, timedelta
 from calendar import monthrange, weekday
 from .calendarfunctions import *
 
-def index(request):
+
+def index(request, month=0, year=0):
 
     today = date.today()
+
+    if month:
+        if not year:
+            year = today.year
+        today = date(int(year), int(month), 1)
+
     past_days, days_in_month = monthrange(today.year, today.month)
     last_day = weekday(today.year, today.month, days_in_month)
     last_day = 5 - last_day
@@ -16,7 +23,7 @@ def index(request):
         last_day = 6
 
     past_days += 1
-    if past_days + last_day < 7:
+    if past_days + last_day < 8:
         last_day += 7
 
     calendar_start = today - timedelta(today.day + past_days - 1)
@@ -59,11 +66,7 @@ def index(request):
 
     day_list = [day_list[0:7], day_list[7:14], day_list[14:21], day_list[21:28], day_list[28:35], day_list[35:42]]
 
-    print(event_dict.keys())
-    print (day_list)
-
-    context_dict = {'response': response,
-                    'events': event_dict,
+    context_dict = {'events': event_dict,
                     'weeks': day_list,
                     'today': today}
 
