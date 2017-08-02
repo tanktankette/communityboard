@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'community_calendar/css/style.css' %}">
+</head>
+<body>
+<table>
+    <tr>
+        <th>Sunday</th>
+        <th>Monday</th>
+        <th>Tuesday</th>
+        <th>Wednesday</th>
+        <th>Thursday</th>
+        <th>Friday</th>
+        <th>Saturday</th>
+    </tr>
+    {% for week in weeks %}
+        <tr>
+        {% for day in week %}
+            <td {% if day.month != today.month %} class="inactive" {% endif %}>
+                {{ day.day }}
+
+
+
+
+
+            </td>
+        {% endfor %}
+        </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>

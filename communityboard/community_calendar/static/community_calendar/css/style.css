@@ -1,0 +1,17 @@
+table{
+  border-spacing: 10px;
+  height: 100%;
+  width: 100%;
+}
+
+td {
+  width: 14%;
+  text-align: center;
+  padding: 10px;
+  background-color: palegoldenrod;
+}
+
+td.inactive {
+  background-color: #FEF8CA;
+  color: gray;
+}
