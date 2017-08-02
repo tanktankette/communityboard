@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
+{% load calendar_tags %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -19,12 +20,14 @@
     </tr>
     {% for week in weeks %}
         <tr>
-        {% for day in week %}
-            <td {% if day.month != today.month %} class="inactive" {% endif %}>
-                {{ day.day }}
-
-
-
+        {% for date in week %}
+            <td {% if date.month != today.month %} class="inactive" {% endif %}>
+                <div class="title">{{ date.day }}</div>
+                {% for event in events|get_item:date %}
+                    <div class="event {% if forloop.counter|divisibleby:2%}highlight{% endif %}">
+                        {{ event.summary }}
+                    </div>
+                {% endfor %}
 
 
             </td>

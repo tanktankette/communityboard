@@ -22,8 +22,6 @@ def index(request):
     calendar_start = today - timedelta(today.day + past_days - 1)
     calendar_end = today + timedelta(days_in_month - today.day + last_day)
 
-    print(calendar_start.isoformat(), calendar_end.isoformat())
-
     scopes = ['https://www.googleapis.com/auth/calendar']
 
     credentials = ServiceAccountCredentials.from_json_keyfile_name(
@@ -60,6 +58,9 @@ def index(request):
         day_list.append(day_list[-1] + timedelta(1))
 
     day_list = [day_list[0:7], day_list[7:14], day_list[14:21], day_list[21:28], day_list[28:35], day_list[35:42]]
+
+    print(event_dict.keys())
+    print (day_list)
 
     context_dict = {'response': response,
                     'events': event_dict,
