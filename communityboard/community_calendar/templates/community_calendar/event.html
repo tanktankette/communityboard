@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+{% load calendar_tags %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    Date: {{ date }} <br/>
+    {% if start_time and end_time %}
+        Start time: {{ start_time }}<br/>
+        End time: {{ end_time }}<br/>
+    {% endif %}
+    Summary: {{ summary }}<br/>
+    <a href="{{ link }}">Link to event on google calendar</a> <br/>
+    <a href="{% url 'community_calendar:index' date|change_year:0 %}">Back to calendar</a>
+</body>
+</html>

@@ -8,6 +8,19 @@
     <link rel="stylesheet" href="{% static 'community_calendar/css/style.css' %}">
 </head>
 <body>
+
+<h1>
+    <a href="{% url 'community_calendar:index' today|change_year:-1%}"><</a>
+    {{ today.year }}
+    <a href="{% url 'community_calendar:index' today|change_year:1 %}">></a>
+</h1>
+
+<h1>
+    <a href="{% url 'community_calendar:index' today|change_month:-1 %}"><</a>
+    {{ today|month_name }}
+    <a href="{% url 'community_calendar:index' today|change_month:1 %}">></a>
+</h1>
+
 <table>
     <tr>
         <th>Sunday</th>
@@ -24,12 +37,12 @@
             <td {% if date.month != today.month %} class="inactive" {% endif %}>
                 <div class="title">{{ date.day }}</div>
                 {% for event in events|get_item:date %}
+                    <a href="{% url 'community_calendar:event_detail' event.id %}">
                     <div class="event {% if forloop.counter|divisibleby:2%}highlight{% endif %}">
-                        {{ event.summary }}
+                        {{ event.start_time }} {{ event.summary }}
                     </div>
+                    </a>
                 {% endfor %}
-
-
             </td>
         {% endfor %}
         </tr>

@@ -4,12 +4,21 @@ table{
   width: 100%;
 }
 
+h1{
+  text-align: center;
+}
+
 td {
   vertical-align: top;
   width: 14%;
   text-align: center;
   padding: 10px;
   background-color: palegoldenrod;
+}
+
+td a{
+  text-decoration: none;
+  color: black;
 }
 
 td.inactive {
@@ -28,6 +37,20 @@ td.inactive {
   background-color: #CEC89A;
 }
 
+td.inactive .event {
+  background-color: #eee8af;
+  color: gray;
+}
+
 .highlight {
   background-color: #FEF8FA;
+}
+
+td.inactive .highlight {
+  background-color: #f8f2b6;
+  color: gray;
+}
+
+.event:hover {
+  background: gold !important;
 }
