@@ -11,6 +11,9 @@
         Start time: {{ start_time }}<br/>
         End time: {{ end_time }}<br/>
     {% endif %}
+    {% if recurrence %}
+        Recurrence rules: {{ recurrence }}<br/>
+    {% endif %}
     Summary: {{ summary }}<br/>
     <a href="{{ link }}">Link to event on google calendar</a> <br/>
     <a href="{% url 'community_calendar:index' date|change_year:0 %}">Back to calendar</a>

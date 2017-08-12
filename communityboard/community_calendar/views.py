@@ -1,8 +1,17 @@
 from django.shortcuts import render
-
-from datetime import date, timedelta, time
-from calendar import monthrange, weekday, month_name
+from calendar import monthrange, weekday
 from .calendarfunctions import *
+from datetime import timedelta
+
+# TODO: EVENT CREATION AND MODIFICATION
+# TODO: CREATE TAG LANGUAGE FOR EVENT DESCRIPTIONS
+#   maybe just an ignore tag for tasks and events that are in this database
+# TODO: MESSAGE BOARD
+#   regular and pinned messages
+# TODO: LANDING PAGE
+# TODO: MEDIA SERVER
+# TODO: PHONE APP
+
 
 
 def index(request, month_year=''):
@@ -29,7 +38,7 @@ def index(request, month_year=''):
     calendar = auth_calendar()
 
     response = calendar.events().list(calendarId='ministryofmagicpdx@gmail.com',
-                                      timeMin=f'{calendar_start}T00:00:00-07:00',
+                                      timeMin=f'{calendar_start}T00:00:00-08:00',
                                       timeMax=f'{calendar_end}T00:00:00-07:00',
                                       orderBy='startTime',
                                       singleEvents=True).execute()['items']
@@ -53,7 +62,12 @@ def event_detail(request, event_id):
     calendar = auth_calendar()
     response = calendar.events().get(calendarId='ministryofmagicpdx@gmail.com',
                                      eventId=event_id).execute()
-
     context_dict = parse_event(response)
+
+    if 'recurringEventId' in response:
+        context_dict['recurringEventId'] = response['recurringEventId']
+        response = calendar.events().get(calendarId='ministryofmagicpdx@gmail.com',
+                                         eventId=response['recurringEventId']).execute()
+        context_dict['recurrence'] = response['recurrence']
 
     return render(request, 'community_calendar/event.html', context_dict)

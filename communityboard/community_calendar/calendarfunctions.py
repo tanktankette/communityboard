@@ -1,4 +1,4 @@
-from datetime import date, tzinfo, timedelta, time
+from datetime import date, time
 from oauth2client.service_account import ServiceAccountCredentials
 from httplib2 import Http
 from googleapiclient.discovery import build
