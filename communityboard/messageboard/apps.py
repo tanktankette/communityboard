@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class MessageboardConfig(AppConfig):
-    name = 'messageboard'
+class MessageBoardConfig(AppConfig):
+    name = 'message_board'
