@@ -1,7 +1,7 @@
 table{
   border-spacing: 10px;
   height: 100%;
-  width: 100%;
+  width: 50%;
 }
 
 h1{
@@ -10,7 +10,7 @@ h1{
 
 td {
   vertical-align: top;
-  width: 14%;
+  width: 10%;
   text-align: center;
   padding: 10px;
   background-color: palegoldenrod;
@@ -32,7 +32,7 @@ td.inactive {
 
 .event {
   text-align: left;
-  font-size: .8em;
+  font-size: .7em;
   padding: 5px;
   background-color: #CEC89A;
 }
