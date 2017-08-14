@@ -17,7 +17,7 @@ class Board(models.Model):
 class Post(models.Model):
     board = models.ForeignKey(Board, related_name='posts')
     text = models.TextField()
-    author = models.CharField(max_length=128, null=False)
+    author = models.CharField(max_length=128, default='Anon')
     pinned = models.BooleanField(default=False)
     date_posted = models.DateTimeField(auto_now_add=True)
     date_edited = models.DateTimeField(auto_now=True)

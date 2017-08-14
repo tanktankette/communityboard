@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'community_calendar',
     'messageboard',
+    'tasklist',
 ]
 
 MIDDLEWARE = [

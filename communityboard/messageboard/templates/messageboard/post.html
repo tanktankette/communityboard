@@ -1,20 +1,12 @@
 <!DOCTYPE html>
-{% load static %}
-{% load messageboard_tags %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="{% static 'messageboard/css/style.css' %}">
 </head>
 <body>
-    {% for p in posts %}
-        <section class="{% cycle 'row1' 'row2' %}">
-            <div class="text">{{ p.text }}</div>
-            <div class="author">-- {{ p.author }} - {{ p.date_posted|adjust_time_zone:'US/Pacific' }}</div>
-        </section>
-    {% endfor %}
-<form id="post_form" method="post" action="{% url 'messageboard:board' board.slug %}">
+<div>
+    <form id="post_form" method="post" action="{% url 'messageboard:post' %}">
         {% csrf_token %}
         {% for hidden in form.hidden_fields %}
             {{  hidden }}
@@ -26,5 +18,6 @@
         {% endfor %}
         <input type="submit" name="submit" value="Create Post" />
     </form>
+</div>
 </body>
 </html>

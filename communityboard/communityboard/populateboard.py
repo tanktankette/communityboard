@@ -6,6 +6,8 @@ import django
 
 django.setup()
 from messageboard.models import Board, Post
+from tasklist.models import Task
+from datetime import date
 
 
 def populate():
@@ -23,6 +25,8 @@ def populate():
             {'author': 'Nick', 'text': 'Post7'},
         ]}
 
+    tasks = ['wash dishes', 'sweep', 'take out trash']
+
     for title, posts in pages.items():
         b = add_board(title)
         for p in posts:
@@ -31,6 +35,15 @@ def populate():
     for b in Board.objects.all():
         for p in b.posts.all():
             print("- {0} - {1}".format(str(b), str(p)))
+
+    for t in tasks:
+        add_task(t)
+
+
+def add_task(name):
+    t = Task.objects.create(name=name, completed=False, due_date=date.today())
+    t.save()
+    return t
 
 
 def add_post(board, text, author):
