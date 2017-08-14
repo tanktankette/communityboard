@@ -11,7 +11,11 @@ def index(request):
 def check(request):
     if request.method == 'POST':
         pk = request.POST.get('pk')
-        checked = request.POST.get('check')
-        Task.objects.get(pk=pk).completed = checked
+        checked = request.POST.get('check') == 'true'
+        task = Task.objects.get(pk=pk)
+        task.completed = checked
+        task.save()
+
+        return HttpResponse('Congrats')
     else:
         return HttpResponse('Not a POST request')
